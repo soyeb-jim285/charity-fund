@@ -1,6 +1,6 @@
-import { UserButton } from "@clerk/nextjs";
 import { HeaderLogo } from "./header-logo";
 import { Navigation } from "./navigation";
+import { HeaderLogin } from "./header-login";
 
 export const Header = () => {
   return (
@@ -11,7 +11,7 @@ export const Header = () => {
             <HeaderLogo />
             <Navigation />
           </div>
-          <UserButton afterSignOutUrl="/" />
+          <HeaderLogin />
         </div>
       </div>
     </header>
