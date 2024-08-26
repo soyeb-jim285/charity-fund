@@ -13,6 +13,9 @@ export const Header = () => {
           </div>
           <HeaderLogin />
         </div>
+        <h1 className="text-black text-4xl font-bold">
+          Donate now to help those in need
+        </h1>
       </div>
     </header>
   );

@@ -1,0 +1,1 @@
+ALTER TABLE "funding" RENAME COLUMN "markdown_file" TO "about";
