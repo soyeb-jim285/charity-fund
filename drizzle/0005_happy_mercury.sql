@@ -1,1 +1,0 @@
-ALTER TABLE "funds" ADD COLUMN "user_id" text NOT NULL;

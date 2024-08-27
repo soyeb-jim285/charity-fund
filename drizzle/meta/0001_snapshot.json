@@ -1,10 +1,10 @@
 {
-  "id": "d96062bd-e6a0-4823-89a1-9fb3084582a2",
-  "prevId": "513aba89-c492-416a-92ba-21df48021484",
-  "version": "5",
-  "dialect": "pg",
+  "id": "30295994-02b9-46a8-92c0-bbf6b2c16895",
+  "prevId": "d5aecbe3-ea8e-4ba8-bac7-861cbed569a4",
+  "version": "7",
+  "dialect": "postgresql",
   "tables": {
-    "account": {
+    "public.account": {
       "name": "account",
       "schema": "",
       "columns": {
@@ -38,14 +38,20 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "funding": {
-      "name": "funding",
+    "public.funds": {
+      "name": "funds",
       "schema": "",
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "text",
           "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
           "notNull": true
         },
         "name": {
@@ -66,12 +72,31 @@
           "primaryKey": false,
           "notNull": true
         },
+        "about": {
+          "name": "about",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "photo_url": {
+          "name": "photo_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
+        },
+        "moderators": {
+          "name": "moderators",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'"
         }
       },
       "indexes": {},
@@ -82,6 +107,7 @@
   },
   "enums": {},
   "schemas": {},
+  "sequences": {},
   "_meta": {
     "columns": {},
     "schemas": {},

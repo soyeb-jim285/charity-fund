@@ -1,33 +1,37 @@
-import { ImageUpIcon } from "lucide-react";
-import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+// components/avatar-uploader.tsx
+"use client";
 
-export const ImageUpload = () => {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Do something with the files
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+import { CldUploadWidget } from "next-cloudinary";
 
+interface AvatarUploaderProps {
+  onUploadSuccess: (url: string) => void;
+}
+
+export function ImageUpload({ onUploadSuccess }: AvatarUploaderProps) {
   return (
-    <div
-      {...getRootProps()}
-      className="w-72 aspect-square rounded-lg bg-[#eff1f5] border-2 border-dotted border-[#8c8fa1] cursor-pointer"
+    <CldUploadWidget
+      uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+      signatureEndpoint="/api/sign-cloudinary-params"
+      onSuccess={(result) => {
+        if (typeof result.info === "object" && "secure_url" in result.info) {
+          onUploadSuccess(result.info.secure_url);
+        }
+      }}
+      options={{
+        singleUploadAutoClose: true,
+      }}
     >
-      <input {...getInputProps()} />
-      <div className="w-full h-3/4 flex items-center justify-center">
-        <ImageUpIcon className="size-2/6 stroke-1 mr-3" />
-      </div>
-      <div className="w-full  flex items-center justify-center">
-        {isDragActive ? (
-          <div className="flex justify-center items-center px-5">
-            <p>Drop the files here ...</p>
-          </div>
-        ) : (
-          <div className="flex items-center justify-center px-5">
-            <p>Drag and drop some files here, or click to select files</p>
-          </div>
-        )}
-      </div>
-    </div>
+      {({ open }) => {
+        return (
+          <button
+            type="button"
+            onClick={() => open()}
+            className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Upload Avatar
+          </button>
+        );
+      }}
+    </CldUploadWidget>
   );
-};
+}

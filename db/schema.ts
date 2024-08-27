@@ -1,5 +1,6 @@
-import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
+import { sql } from "./drizzel";
 
 export const funds = pgTable("funds", {
   id: text("id").primaryKey(),
@@ -10,6 +11,7 @@ export const funds = pgTable("funds", {
   about: text("about").notNull(),
   photoUrl: text("photo_url").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
+  moderators: text("moderators").array().notNull().default([]),
 });
 
 export const account = pgTable("account", {

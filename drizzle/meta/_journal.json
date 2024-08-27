@@ -1,47 +1,19 @@
 {
-  "version": "5",
-  "dialect": "pg",
+  "version": "7",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1724212151340,
-      "tag": "0000_cooing_maestro",
+      "version": "7",
+      "when": 1724782979488,
+      "tag": "0000_illegal_mongu",
       "breakpoints": true
     },
     {
       "idx": 1,
-      "version": "5",
-      "when": 1724264425096,
-      "tag": "0001_demonic_sharon_carter",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1724264582277,
-      "tag": "0002_slippery_killraven",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1724322225154,
-      "tag": "0003_shallow_bucky",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1724322420105,
-      "tag": "0004_mature_hellion",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1724323790917,
-      "tag": "0005_happy_mercury",
+      "version": "7",
+      "when": 1724783008870,
+      "tag": "0001_absurd_synch",
       "breakpoints": true
     }
   ]

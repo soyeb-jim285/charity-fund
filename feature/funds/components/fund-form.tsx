@@ -54,6 +54,10 @@ export const FundForm = ({
   const handleDelete = () => {
     onDelete?.();
   };
+  const handleImageUploadSuccess = (url: string) => {
+    form.setValue("photoUrl", url);
+    console.log(url);
+  };
 
   return (
     <Form {...form}>
@@ -94,7 +98,7 @@ export const FundForm = ({
             />
           </div>
           <div className="w-1/3 px-8">
-            <ImageUpload />
+            <ImageUpload onUploadSuccess={handleImageUploadSuccess} />
           </div>
         </div>
       </form>

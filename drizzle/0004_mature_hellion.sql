@@ -1,1 +1,0 @@
-ALTER TABLE "funding" RENAME TO "funds";
