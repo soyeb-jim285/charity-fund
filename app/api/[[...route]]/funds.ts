@@ -1,9 +1,9 @@
 import { db } from "@/db/drizzel";
 import { funds, insertFundsSchema } from "@/db/schema";
-import { Hono } from "hono";
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
-import { createId } from "@paralleldrive/cuid2";
 import { zValidator } from "@hono/zod-validator";
+import { createId } from "@paralleldrive/cuid2";
+import { Hono } from "hono";
 
 const app = new Hono()
   .get("/", clerkMiddleware(), async (ctx) => {
@@ -14,13 +14,14 @@ const app = new Hono()
     const data = await db
       .select({
         id: funds.id,
+        userId: funds.userId,
         name: funds.name,
         date: funds.createdAt,
         amount: funds.amount,
         description: funds.description,
         about: funds.about,
         photoUrl: funds.photoUrl,
-        userId: funds.userId,
+        moderators: funds.moderators,
       })
       .from(funds);
     return ctx.json({ data });
@@ -36,6 +37,7 @@ const app = new Hono()
         amount: true,
         about: true,
         photoUrl: true,
+        moderators: true,
       }),
     ),
     async (ctx) => {
@@ -48,10 +50,13 @@ const app = new Hono()
       const data = await db
         .insert(funds)
         .values({
+          id: createId(),
           userId: auth.userId,
           createdAt: new Date(),
-          id: createId(),
           ...values,
+          moderators: Array.isArray(values.moderators)
+            ? values.moderators
+            : [auth.userId], // Ensure moderators is an array
         })
         .returning();
       return ctx.json({ data: data[0] });
@@ -59,3 +64,5 @@ const app = new Hono()
   );
 
 export default app;
+
+// Argument of type '{ name: string; description: string; amount: string; about: string; photoUrl: string; moderators: string; userId: string; createdAt: Date; id: string; }' is not assignable to parameter of type '{ id: string | SQL<unknown> | Placeholder<string, any>; userId: string | SQL<unknown> | Placeholder<string, any>; name: string | SQL<unknown> | Placeholder<string, any>; ... 5 more ...; moderators: string[] | ... 1 more ... | Placeholder<...>; }'.

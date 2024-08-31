@@ -67,7 +67,6 @@ export const FundForm = ({
       >
         <div className="flex justify-center">
           <div className="w-full pl-10 pt-10">
-            What is the difference between the two code snippets?
             <FormField
               name="name"
               control={form.control}

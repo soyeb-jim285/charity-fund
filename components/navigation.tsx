@@ -1,14 +1,14 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { NavButton } from "./nav-button";
+import { NavButton } from "./nav-link";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useMedia } from "react-use";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 
-const routes = [
+export const routes = [
   {
     href: "/",
     label: "Home",
@@ -69,7 +69,7 @@ export const Navigation = () => {
   }
 
   return (
-    <nav className="hidden lg:flex items-center gap-x-2 overflow-x-auto">
+    <nav className="flex items-center gap-4 text-sm lg:gap-6">
       {routes.map((route) => (
         <NavButton
           key={route.href}

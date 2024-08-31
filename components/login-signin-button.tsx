@@ -1,15 +1,39 @@
 import Link from "next/link";
 import { Button } from "./ui/button";
+import {
+  ClerkLoaded,
+  ClerkLoading,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
+import { Loader2 } from "lucide-react";
 
 export const LoginSigninButton = () => {
   return (
     <div>
-      <Button variant="secondary" className="mr-4">
-        <Link href="/sign-in">Sign in</Link>
-      </Button>
-      <Button variant="default">
-        <Link href="/sign-up">Sign up</Link>
-      </Button>
+      <SignedOut>
+        <SignInButton>
+          <Button variant="default" size="sm" className="mr-2">
+            Sign In
+          </Button>
+        </SignInButton>
+        <SignUpButton>
+          <Button variant="secondary" size="sm">
+            Sign Up
+          </Button>
+        </SignUpButton>
+      </SignedOut>
+      <SignedIn>
+        <ClerkLoading>
+          <Loader2 className="animate-spin" size="sm" />
+        </ClerkLoading>
+        <ClerkLoaded>
+          <UserButton />
+        </ClerkLoaded>
+      </SignedIn>
     </div>
   );
 };

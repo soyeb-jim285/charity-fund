@@ -1,16 +1,11 @@
-import { Header } from "@/components/header";
-
-type DashboardLayoutProps = {
+interface AppLayoutProps {
   children: React.ReactNode;
-};
+}
 
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+export default function AppLayout({ children }: AppLayoutProps) {
   return (
     <>
-      <Header />
-      <main className="px-3 lg:px-14">{children}</main>
+      <main className="flex-1">{children}</main>
     </>
   );
-};
-
-export default DashboardLayout;
+}

@@ -1,7 +1,7 @@
 import { client } from "@/lib/hono";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGerFunds = () => {
+export const useGetFunds = () => {
   const query = useQuery({
     queryKey: ["funds"],
     queryFn: async () => {
